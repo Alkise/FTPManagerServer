@@ -19,9 +19,9 @@ public interface ItemListIntf {
 
     void addItems(String fromDirectory, Collection<String> items) throws IOException;
 
-    void removeItem(String item) throws IOException;
+    void removeItem(String item);
 
-    void removeItems(Collection<String> items) throws IOException;
+    void removeItems(Collection<String> items);
 
     Collection<String> getItems();
 

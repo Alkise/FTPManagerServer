@@ -5,6 +5,7 @@
 package ru.alkise.manager.model;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -17,28 +18,30 @@ import ru.alkise.manager.model.itemlist.locallist.FileItemList;
  * @author alkise
  */
 public class ManagerModelRemote extends UnicastRemoteObject implements ManagerModelRemoteIntf {
+
     private ItemListIntf fromList;
     private ItemListIntf toList;
-    
+    private Properties properties;
+
     public ManagerModelRemote(ItemListIntf fromList, ItemListIntf toList) throws RemoteException {
         this.fromList = fromList;
         this.toList = toList;
     }
-    
+
     @Override
     public void setProperties(Properties properties) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.properties = properties;
     }
 
     @Override
     public Properties getProperties() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return properties;
     }
 
     @Override
     public void copyDifferentItemsToRightList() throws RemoteException {
         try {
-        toList.addItems(fromList.getWorkingDirectory(), fromList.getDifferentItems(toList)); 
+            toList.addItems(fromList.getWorkingDirectory(), fromList.getDifferentItems(toList));
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -46,19 +49,21 @@ public class ManagerModelRemote extends UnicastRemoteObject implements ManagerMo
 
     @Override
     public void deleteDifferentItemsFromRightList() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        toList.removeItems(fromList.getDifferentItems(toList));
     }
 
     @Override
     public String[] getLeftListItems() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] itemArray = new String[fromList.getItems().size()];
+        return fromList.getItems().toArray(itemArray);
     }
 
     @Override
     public String[] getRightListItems() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] itemArray = new String[toList.getItems().size()];
+        return toList.getItems().toArray(itemArray);
     }
-    
+
     public static void main(String[] args) {
         try {
             ItemListIntf fromList = new FileItemList("/home/alkise/Pictures");
@@ -66,9 +71,12 @@ public class ManagerModelRemote extends UnicastRemoteObject implements ManagerMo
             ManagerModelRemoteIntf model = new ManagerModelRemote(fromList, toList);
             Naming.rebind("ManagerModel", model);
             System.out.println("Server started");
-        } catch (Exception ex) {
+            
+            for (String item : model.getRightListItems()) {
+                System.out.println(item);
+            }
+        } catch (RemoteException | MalformedURLException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
 }
