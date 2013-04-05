@@ -63,20 +63,4 @@ public class ManagerModelRemote extends UnicastRemoteObject implements ManagerMo
         String[] itemArray = new String[toList.getItems().size()];
         return toList.getItems().toArray(itemArray);
     }
-
-    public static void main(String[] args) {
-        try {
-            ItemListIntf fromList = new FileItemList("/home/alkise/Pictures");
-            ItemListIntf toList = new FileItemList("/home/alkise/Documents");
-            ManagerModelRemoteIntf model = new ManagerModelRemote(fromList, toList);
-            Naming.rebind("ManagerModel", model);
-            System.out.println("Server started");
-            
-            for (String item : model.getRightListItems()) {
-                System.out.println(item);
-            }
-        } catch (RemoteException | MalformedURLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 }
