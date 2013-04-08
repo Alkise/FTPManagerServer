@@ -19,7 +19,6 @@ public class FTPItemList extends AbstractItemList {
     public FTPItemList(String hostname, String username, String password, String workingDirectory) throws IOException {
         super(workingDirectory);
         fTPConnector = new FTPConnector(hostname, username, password, workingDirectory);
-        fTPConnector.connect();
         this.workingDirectory = workingDirectory;
         for (String item : fTPConnector.getNames()) {
             if (item.endsWith(".jpg") || item.endsWith(".jpeg")) {
@@ -57,14 +56,6 @@ public class FTPItemList extends AbstractItemList {
             items.removeAll(items);
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
-        }
-    }
-    
-    public void disconnect() {
-        try {
-        fTPConnector.disconnect();
-        } catch (IOException ioe) {
-            System.out.println("Exception: " + ioe.getMessage());
         }
     }
 }

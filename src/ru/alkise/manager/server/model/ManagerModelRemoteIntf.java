@@ -6,7 +6,6 @@ package ru.alkise.manager.server.model;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.Properties;
 
 /**
  *

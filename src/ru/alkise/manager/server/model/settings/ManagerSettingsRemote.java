@@ -4,7 +4,6 @@
  */
 package ru.alkise.manager.server.model.settings;
 
-import com.sun.org.glassfish.external.probe.provider.annotations.Probe;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

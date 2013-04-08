@@ -23,12 +23,13 @@ public class FTPManagerServer {
         try {
             AESEncryptor encryptor = new AESEncryptor("TheSupaSecretKey");
             ManagerSettingsRemote settings = new ManagerSettingsRemote();
-            settings.setProperty("localDirectory", "/home/alkise/Pictures");
-            settings.setProperty("hostname", "127.0.0.1");
-            settings.setProperty("username", "Anonymous");
-            settings.setProperty("password", encryptor.encrypt("secretpassword"));
-            settings.setProperty("workingDirectory", "");
-            settings.save();
+//            settings.setProperty("localDirectory", "/home/alkise/Pictures");
+//            settings.setProperty("hostname", "127.0.0.1");
+//            settings.setProperty("username", "Anonymous");
+//            settings.setProperty("password", encryptor.encrypt("secretpassword"));
+//            settings.setProperty("workingDirectory", "");
+//            settings.save();
+            settings.load();
             ItemListIntf fromList = new FileItemList(settings.getProperty("localDirectory"));
             ItemListIntf toList = new FTPItemList(settings.getProperty("hostname"), 
                     settings.getProperty("username"), 

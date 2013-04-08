@@ -36,8 +36,9 @@ public class FTPConnector {
         this.workingDirectory = workingDirectory;
     }
 
-    public void connect() throws IOException {
+    private void connect() throws IOException {
         client.connect(hostname);
+        login();
     }
 
     private void login() throws IOException {
@@ -51,7 +52,8 @@ public class FTPConnector {
         client.logout();
     }
 
-    public void disconnect() throws IOException {
+    private void disconnect() throws IOException {
+        logout();
         client.disconnect();
     }
 
@@ -60,24 +62,24 @@ public class FTPConnector {
     }
 
     public void deleteFile(String filename) throws IOException {
-        login();
+        connect();
         client.deleteFile(filename);
-        logout();
+        disconnect();
     }
     
     public void deleteFiles(Collection<String> filenames) throws IOException {
-        login();
+        connect();
         for (String filename : filenames) {
             client.deleteFile(filename);
         }
-        logout();
+        disconnect();
     }
 
     public Collection<String> getNames() throws IOException {
         Collection<String> names;
-        login();
+        connect();
         names = Arrays.asList(client.listNames());
-        logout();
+        disconnect();
         return names;
     }
 
@@ -86,9 +88,9 @@ public class FTPConnector {
             @Override
             public void run() {
                 try (InputStream is = new FileInputStream(localDirectory + File.separator + filename);) {
-                    login();
+                    connect();
                     client.storeFile(filename, is);
-                    logout();
+                    disconnect();
                 } catch (IOException ioe) {
                     throw new RuntimeException(ioe);
                 }
@@ -101,14 +103,14 @@ public class FTPConnector {
             @Override
             public void run() {
                 try {
-                    login();
+                    connect();
                     InputStream is;
                     for (String filename : filenames) {
                         is = new FileInputStream(localDirectory + File.separator + filename);
                         client.storeFile(filename, is);
                         is.close();
                     }
-                    logout();
+                    disconnect();
                 } catch (IOException ioe) {
                     throw new RuntimeException(ioe);
                 }
