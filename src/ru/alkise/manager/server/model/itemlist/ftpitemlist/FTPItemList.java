@@ -59,4 +59,12 @@ public class FTPItemList extends AbstractItemList {
             throw new RuntimeException(ioe);
         }
     }
+    
+    public void disconnect() {
+        try {
+        fTPConnector.disconnect();
+        } catch (IOException ioe) {
+            System.out.println("Exception: " + ioe.getMessage());
+        }
+    }
 }

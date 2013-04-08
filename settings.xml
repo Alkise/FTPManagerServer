@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>FTP File Manager Settings</comment>
+<entry key="hostname">127.0.0.1</entry>
+<entry key="password">fXWSgkd/qoCLC35g5WOgWw==</entry>
+<entry key="workingDirectory"/>
+<entry key="localDirectory">/home/alkise/Pictures</entry>
+<entry key="username">Anonymous</entry>
+</properties>
