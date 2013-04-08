@@ -7,6 +7,7 @@ package ru.alkise.manager.server.model.itemlist.fileitemlist;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,7 +26,12 @@ public class FileItemList extends AbstractItemList {
         super(workingDirectory);
         directory = new File(workingDirectory);
         if (directory.exists() && directory.isDirectory()) {
-            items.addAll(Arrays.asList(directory.list()));
+            items.addAll(Arrays.asList(directory.list(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return (name.endsWith(".jpg") || name.endsWith(".jpeg"));
+                }
+            })));
         }
     }
 
