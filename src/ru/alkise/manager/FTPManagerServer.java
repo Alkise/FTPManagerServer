@@ -11,7 +11,7 @@ import java.rmi.registry.LocateRegistry;
 import ru.alkise.manager.model.ManagerModelRemote;
 import ru.alkise.manager.model.ManagerModelRemoteIntf;
 import ru.alkise.manager.model.itemlist.ItemListIntf;
-import ru.alkise.manager.model.itemlist.locallist.FileItemList;
+import ru.alkise.manager.model.itemlist.fileitemlist.FileItemList;
 
 /**
  *

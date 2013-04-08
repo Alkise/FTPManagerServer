@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.alkise.manager.model.itemlist.locallist;
+package ru.alkise.manager.model.itemlist.fileitemlist;
 
 import java.io.File;
 import java.io.FileInputStream;

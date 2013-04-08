@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Properties;
 import ru.alkise.manager.model.itemlist.ItemListIntf;
-import ru.alkise.manager.model.itemlist.locallist.FileItemList;
+import ru.alkise.manager.model.itemlist.fileitemlist.FileItemList;
 
 /**
  *
