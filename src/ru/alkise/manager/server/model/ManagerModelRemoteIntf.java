@@ -14,10 +14,6 @@ import java.util.Properties;
  */
 public interface ManagerModelRemoteIntf extends Remote {
 
-    void setProperties(Properties properties) throws RemoteException;
-
-    Properties getProperties() throws RemoteException;
-
     void copyDifferentItemsToRightList() throws RemoteException;
 
     void deleteDifferentItemsFromRightList() throws RemoteException;

@@ -5,37 +5,21 @@
 package ru.alkise.manager.server.model;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Properties;
 import ru.alkise.manager.server.model.itemlist.ItemListIntf;
-import ru.alkise.manager.server.model.itemlist.fileitemlist.FileItemList;
 
 /**
  *
  * @author alkise
  */
 public class ManagerModelRemote extends UnicastRemoteObject implements ManagerModelRemoteIntf {
-
     private ItemListIntf fromList;
     private ItemListIntf toList;
-    private Properties properties;
 
     public ManagerModelRemote(ItemListIntf fromList, ItemListIntf toList) throws RemoteException {
         this.fromList = fromList;
         this.toList = toList;
-    }
-
-    @Override
-    public void setProperties(Properties properties) throws RemoteException {
-        this.properties = properties;
-    }
-
-    @Override
-    public Properties getProperties() throws RemoteException {
-        return properties;
     }
 
     @Override
