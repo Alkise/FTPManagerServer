@@ -58,9 +58,8 @@ public class FTPConnector {
     }
 
     public void setWorkingDirectory(String workingDirectory) throws IOException {
-        logout();
         this.workingDirectory = workingDirectory;
-        login();
+        client.changeWorkingDirectory(workingDirectory);
     }
 
     public void deleteFile(String filename) throws IOException {

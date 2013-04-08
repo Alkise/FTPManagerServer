@@ -14,7 +14,7 @@ import ru.alkise.manager.server.model.itemlist.AbstractItemList;
  */
 public class FTPItemList extends AbstractItemList {
 
-    private FTPConnector fTPConnector;
+    private final FTPConnector fTPConnector;
 
     public FTPItemList(String hostname, String username, String password, String workingDirectory) throws IOException {
         super(workingDirectory);
@@ -25,6 +25,21 @@ public class FTPItemList extends AbstractItemList {
                 items.add(item);
             }
         }
+    }
+
+    @Override
+    public Collection<String> getItems() {
+        items.clear();
+        try {
+            for (String item : fTPConnector.getNames()) {
+                if (item.endsWith(".jpg") || item.endsWith(".jpeg")) {
+                    items.add(item);
+                }
+            }
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        return items;
     }
 
     @Override
