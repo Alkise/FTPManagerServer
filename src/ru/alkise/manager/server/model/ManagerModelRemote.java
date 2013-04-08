@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.alkise.manager.model;
+package ru.alkise.manager.server.model;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -10,8 +10,8 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Properties;
-import ru.alkise.manager.model.itemlist.ItemListIntf;
-import ru.alkise.manager.model.itemlist.fileitemlist.FileItemList;
+import ru.alkise.manager.server.model.itemlist.ItemListIntf;
+import ru.alkise.manager.server.model.itemlist.fileitemlist.FileItemList;
 
 /**
  *

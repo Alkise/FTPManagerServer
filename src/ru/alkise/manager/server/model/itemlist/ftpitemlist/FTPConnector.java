@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.alkise.manager.model.itemlist.ftpitemlist;
+package ru.alkise.manager.server.model.itemlist.ftpitemlist;
 
 import java.io.File;
 import java.io.FileInputStream;

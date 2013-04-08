@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.alkise.manager.model.itemlist;
+package ru.alkise.manager.server.model.itemlist;
 
 import java.io.IOException;
 import java.util.ArrayList;
